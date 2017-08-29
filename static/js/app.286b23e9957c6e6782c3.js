@@ -558,7 +558,7 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
   return _c('div', {
     staticClass: "row"
   }, [_c('div', {
-    staticClass: "col-xs-12"
+    staticClass: "col-xs-12 mb24"
   }, [_vm._v("\n      複数のフォームのmodelをlocal stateに詰め込んで、発火するたびにstoreへどん\n    ")])])
 }]
 var esExports = { render: render, staticRenderFns: staticRenderFns }
@@ -783,4 +783,4 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.da8e7c8546fa34525bfd.js.map
+//# sourceMappingURL=app.286b23e9957c6e6782c3.js.map
