@@ -323,7 +323,7 @@ const state = {
 
 // getters
 const getters = {
-  form1: state => state
+  form1: state => state,
 }
 
 // profileの更新
@@ -771,4 +771,4 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.2700abc7b0aeaba2872b.js.map
+//# sourceMappingURL=app.1e94cb644928b1ed26c5.js.map
