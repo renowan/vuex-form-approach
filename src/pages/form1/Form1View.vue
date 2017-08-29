@@ -2,6 +2,12 @@
   <div class="container">
 
     <div class="row">
+      <div class="col-xs-12 mb24">
+        複数のフォームのmodelをlocal stateに詰め込んで、発火するたびにstoreへどん
+      </div>
+    </div>
+
+    <div class="row">
       <div class="col-xs-6">
 
         <div class="row">
