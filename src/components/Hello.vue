@@ -1,6 +1,10 @@
 <template>
-  <div class="hello">
-    hello
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 mb16">
+        Top page.
+      </div>
+    </div>
   </div>
 </template>
 

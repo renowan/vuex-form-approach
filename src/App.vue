@@ -7,6 +7,13 @@
           <h1>Vuex Form</h1>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          Navi: <router-link to="/">Top</router-link> | <router-link to="/form1">form1</router-link>
+        </div>
+      </div>
+
     </div>
 
     <router-view></router-view>
@@ -28,12 +35,18 @@ export default {
   margin-bottom: 8px;
 }
 
+.mt16 {
+  margin-top: 16px;
+}
 .mb16 {
   margin-bottom: 16px;
 }
 
 .mb24 {
   margin-bottom: 24px;
+}
+.mt24 {
+  margin-top: 24px;
 }
 
 </style>

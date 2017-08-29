@@ -1,7 +1,8 @@
 const state = {
   profile: {
     name: '',
-    age: 0
+    age: 0,
+    pet: []
   }
 }
 
@@ -10,7 +11,7 @@ const getters = {
   form1: state => state,
 }
 
-// categoryの更新
+// profileの更新
 const FORM1_UPDATE_PROFILE = 'FORM1_UPDATE_PROFILE'
 
 // actions
