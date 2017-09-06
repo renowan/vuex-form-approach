@@ -28,19 +28,19 @@ export default {
   props: {
     value: {},
     position: {type: String, default: 'bottom'},
-    validation: {type: Object, required: true},
+    order: {type: Object, required: true},
     textCount: {type: Boolean, default: false}
   },
   computed: {
     textCountValue() {
-      return `${this.value.length}/${this.max}文字`
+      return `${this.order.value.length}/${this.max}文字`
     },
     isOver () {
-      return this.value.length > this.max || this.validation.isError
+      return this.order.value.length > this.max || this.order.validation.isError
     }
   },
   data () {
-    const rules = this.validation.rules
+    const rules = this.data.validation.rules
     let max = 0
     rules.forEach( elm => {
       if (Object.keys(elm)[0] === 'max') {
@@ -58,5 +58,18 @@ export default {
 </script>
 
 <style scoped>
+.mt5 {
+  margin-top: 5px;
+}
+.fs12 {
+  font-size: 12px;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
 
+li {
+  list-style: none;
+}
 </style>

@@ -16,13 +16,13 @@
           <div class="col-xs-12">
 
             <div class="form-group">
-              <validation :validation="myStore.profile.name.validation">
+              <validation :order="myStore.profile.name">
                 <label>名前</label>
                 <input type="text" class="form-control input-sm" placeholder="" :value="myStore.profile.name.value" @input="inputUpdate($event.target.value, 'profile.name')">
               </validation>
             </div>
             <div class="form-group">
-              <validation :validation="myStore.profile.name.validation">
+              <validation :validation="myStore.profile.age">
                 <label>年齢</label>
                 <input type="text" class="form-control input-sm" placeholder="" :value="myStore.profile.age.value" @input="inputUpdate($event.target.value, 'profile.age')">
               </validation>

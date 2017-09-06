@@ -1,34 +1,36 @@
 import {cloneDeep} from 'lodash'
-
+import validationCheck from './validationCheck.js'
 const state = {
   profile: {
     name: {
       value: '',
       validation: {
         rules: [
-
+          'required',
+          {min: 2},
+          {max: 6},
         ],
         isError: true, //バリデーション結果
-        errors: []
+        errors: [],
+        formClass: ''
       },
       type: 'string',
       skipFirstTime: false,
-      dirty: false, // 一同でも入力されたか
-      formClass: '',
+      dirty: false, // 一度でも入力されたか
     },
     age: {
       value: 1,
       validation: {
-        rulue: [
+        rulues: [
 
         ],
         isError: false, //バリデーション結果
-        errors: []
+        errors: [],
+        formClass: ''
       },
       type: 'number',
       skipFirstTime: true,
-      dirty: false, // 一同でも入力されたか
-      formClass: '',
+      dirty: false, // 一度でも入力されたか
     },
   },
   disabled: false
@@ -68,6 +70,7 @@ const actions = {
     let localState = cloneDeep(state)
     let targetObj = localState[segments[0]][segments[1]]
     targetObj.value = data.value
+    targetObj = validationCheck(targetObj)
     commit(FORM2_INPUT_UPDATE, {obj: targetObj, path})
 
     let disabled = checkError(localState)
