@@ -1,3 +1,5 @@
+import {cloneDeep} from 'lodash'
+
 const state = {
   profile: {
     name: {
@@ -5,31 +7,31 @@ const state = {
       validation: {
         rules: [
 
-        ]
+        ],
+        isError: true, //バリデーション結果
+        errors: []
       },
-      dataType: 'string',
+      type: 'string',
       skipFirstTime: false,
-      isError: true, //バリデーション結果
       dirty: false, // 一同でも入力されたか
       formClass: '',
-      errors: []
     },
     age: {
       value: 1,
       validation: {
         rulue: [
 
-        ]
+        ],
+        isError: false, //バリデーション結果
+        errors: []
       },
-      dataType: 'number',
+      type: 'number',
       skipFirstTime: true,
-      isError: false, //バリデーション結果
       dirty: false, // 一同でも入力されたか
       formClass: '',
-      errors: []
     },
-    pet: []
-  }
+  },
+  disabled: false
 }
 
 // getters
@@ -37,18 +39,52 @@ const getters = {
   form2: state => state,
 }
 
-// profileの更新
-const FORM2_UPDATE_PROFILE = 'FORM1_UPDATE_PROFILE'
+// 情報の更新
+const FORM2_INPUT_UPDATE = 'FORM2_INPUT_UPDATE'
+const FORM2_UPDATE_DISABLED = 'FORM2_UPDATE_DISABLED'
+
+const checkError = state => {
+  for (var variable in state) {
+    if (state.hasOwnProperty(variable)) {
+      let child = state[variable]
+      for (var variable2 in child) {
+        if (child.hasOwnProperty(variable2)) {
+          console.log('child[variable2]',child[variable2])
+          if (child[variable2].hasOwnProperty('validation') && child[variable2].validation.isError) {
+            return true
+          }
+        }
+      }
+    }
+  }
+  return false
+}
 
 // actions
 const actions = {
+  inputUpdate ({commit, state}, data) {
+    const path = data.path
+    const segments = path.split('.')
+    let localState = cloneDeep(state)
+    let targetObj = localState[segments[0]][segments[1]]
+    targetObj.value = data.value
+    commit(FORM2_INPUT_UPDATE, {obj: targetObj, path})
 
+    let disabled = checkError(localState)
+    // check
+
+    commit(FORM2_UPDATE_DISABLED, disabled)
+  }
 }
 
 // mutations
 const mutations = {
-  [FORM2_UPDATE_PROFILE] (state, data) {
-    state.profile = data
+  [FORM2_INPUT_UPDATE] (state, data) {
+    const segments = data.path.split('.')
+    state[segments[0]][segments[1]] = data.obj
+  },
+  [FORM2_UPDATE_DISABLED] (state, disabled) {
+    state.disabled = disabled
   }
 }
 
@@ -56,5 +92,6 @@ export default {
   state,
   getters,
   actions,
-  mutations
+  mutations,
+  namespaced: true
 }
