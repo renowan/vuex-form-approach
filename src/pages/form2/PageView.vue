@@ -18,7 +18,13 @@
             <div class="form-group">
               <validation :validation="myStore.profile.name.validation">
                 <label>名前</label>
-                <input type="text" class="form-control input-sm" placeholder="" :value="myStore.profile.name.value">
+                <input type="text" class="form-control input-sm" placeholder="" :value="myStore.profile.name.value" @input="inputUpdate($event.target.value, 'profile.name')">
+              </validation>
+            </div>
+            <div class="form-group">
+              <validation :validation="myStore.profile.name.validation">
+                <label>年齢</label>
+                <input type="text" class="form-control input-sm" placeholder="" :value="myStore.profile.age.value" @input="inputUpdate($event.target.value, 'profile.age')">
               </validation>
             </div>
           </div>
@@ -75,7 +81,10 @@ export default {
     }
   },
   methods: {
-
+    inputUpdate (value, path) {
+      // console.log('key', key)
+      this.$store.dispatch('form2/inputUpdate', {value, path})
+    }
   }
 }
 </script>
