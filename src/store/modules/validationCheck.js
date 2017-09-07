@@ -12,6 +12,12 @@ const rule = {
   max (data, length) {
     return String(data).length > length
   },
+  minValue (data, limit) {
+    return data < limit
+  },
+  maxValue (data, limit) {
+    return data > limit
+  },
   isNumber (data) {
     return String(data).match(/[^0-9]/)
   }
@@ -52,6 +58,18 @@ const errorMessage = {
       text: `文字数制限：${length}${temp}以内。`
     }
   },
+  minValue (limit, dataType) {
+    return {
+      icon: 'fa fa-exclamation-triangle',
+      text: `制限値：${limit}以上。`
+    }
+  },
+  maxValue (limit, dataType) {
+    return {
+      icon: 'fa fa-exclamation-triangle',
+      text: `制限値：${limit}以内。`
+    }
+  },
   isNumber: {
     icon: 'fa fa-exclamation-triangle',
     text: '半角数字のみ可'
@@ -61,10 +79,15 @@ const errorMessage = {
 /*
   order フォーマット
   order = {
-    rules: [],
-    dirty: false,
+    value: '',
+    validation: {
+      rules: [],
+      isError: true,
+      formClass: '',
+    },
     type: 'string',
-    dirty: skipFirstTime,
+    skipFirstTime: true,
+    dirty: true,
   }
  */
 export default (order) => {
@@ -73,31 +96,29 @@ export default (order) => {
   order.validation.isError = false
   order.validation.formClass = ''
 
-  const value = order.value
+  const value = order.value // バリデーションをかける対象
   const rules = order.validation.rules
   const type = order.type
 
-
   rules.forEach(elm => {
-    if (typeof elm === 'string') {
-      if (rule[elm](value)) {
-        order.validation.isError = true
-        order.validation.errors.push(errorMessage[elm])
-      }
-    } else {
-      const key = Object.keys(elm)[0]
-      const v = elm[key]
-      if (rule[key](value, v)) {
-        order.validation.isError = true
+    const ruleName = (typeof elm === 'string') ? elm : Object.keys(elm)[0]
+    const ruleFunc = rule[ruleName]
+    const ruleValue = elm[ruleName] || null
 
-        order.validation.errors.push(errorMessage[key](value, type))
-      }
+    if (ruleFunc(value, ruleValue)) {
+      order.validation.isError = true
+      const errorsOjb = (typeof elm === 'string') ? errorMessage[ruleName] : errorMessage[ruleName](ruleValue, type)
+      order.validation.errors.push(errorsOjb)
     }
+
   })
 
   // バリデーション結果によってcssクラスを付与する
-  let formClass = order.validation.isError ? 'has-error' : ''
-
+  order.validation.formClass = order.validation.isError ? 'has-error' : ''
+  if (order.value === 200) {
+    console.log('あたり')
+  }
+  console.log('order', order)
   if (order.skipFirstTime) {
     if (!order.dirty && value !== '') {
       // 初回入力、dirtyを変更
