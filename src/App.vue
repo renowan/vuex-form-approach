@@ -10,7 +10,7 @@
 
       <div class="row">
         <div class="col-xs-12">
-          Navi: <router-link to="/">Top</router-link> | <router-link to="/form1">form1</router-link> | <router-link to="/form2">form2</router-link>
+          Navi: <router-link to="/">Top</router-link> | <router-link to="/form1">form1</router-link> | <router-link to="/form2">form2</router-link> | <router-link to="/form3">form3</router-link>
         </div>
       </div>
 
