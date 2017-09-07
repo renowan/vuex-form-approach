@@ -83,6 +83,7 @@ const defaultState = {
         rules: [
           'spaceOnly',
           'isNumber',
+          {min: 10},
           {max: 11},
         ],
         isError: false, //バリデーション結果
