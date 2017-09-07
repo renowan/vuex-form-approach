@@ -14,7 +14,7 @@ const defaultState = {
 
 // getters
 const getters = {
-  form2: state => state,
+  form2: state => state
 }
 
 // 情報の更新

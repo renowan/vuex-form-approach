@@ -100,7 +100,7 @@ const defaultState = {
 
 // getters
 const getters = {
-  form3: state => state,
+  form3: state => state
 }
 
 // 情報の更新
