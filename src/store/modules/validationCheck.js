@@ -115,10 +115,7 @@ export default (order) => {
 
   // バリデーション結果によってcssクラスを付与する
   order.validation.formClass = order.validation.isError ? 'has-error' : ''
-  if (order.value === 200) {
-    console.log('あたり')
-  }
-  console.log('order', order)
+
   if (order.skipFirstTime) {
     if (!order.dirty && value !== '') {
       // 初回入力、dirtyを変更
