@@ -18,7 +18,7 @@
             <h3>Profile</h3>
 
             <validation :order="myStore.profile.name">
-              <label>名前</label>
+              <label>名前（初回チェックしない - skipFirstTime）</label>
               <input
               type="text"
               class="form-control input-sm"
@@ -27,8 +27,10 @@
               @input="inputUpdate($event.target.value, 'profile.name')">
             </validation>
 
+            <rule-list :rules="myStore.profile.name.validation.rules"></rule-list>
+
             <validation :order="myStore.profile.age">
-              <label>年齢</label>
+              <label>年齢（数値150まで）</label>
               <input
               type="text"
               class="form-control input-sm"
@@ -36,6 +38,8 @@
               :value="myStore.profile.age.value"
               @input="inputUpdate($event.target.value, 'profile.age')">
             </validation>
+
+            <rule-list :rules="myStore.profile.age.validation.rules"></rule-list>
 
           </div>
         </div>
@@ -54,8 +58,10 @@
               @input="inputUpdate($event.target.value, 'info.graduated')">
             </validation>
 
+            <rule-list :rules="myStore.info.graduated.validation.rules"></rule-list>
+
             <validation :order="myStore.info.phoneNum">
-              <label>電話番号（ハイフン無し）</label>
+              <label>電話番号（ハイフン無し10~11桁）</label>
               <input
               type="text"
               class="form-control input-sm"
@@ -63,6 +69,8 @@
               :value="myStore.info.phoneNum.value"
               @input="inputUpdate($event.target.value, 'info.phoneNum')">
             </validation>
+
+            <rule-list :rules="myStore.info.phoneNum.validation.rules"></rule-list>
 
           </div>
         </div>
@@ -94,11 +102,13 @@
 <script>
 import {cloneDeep} from 'lodash'
 import validation from './Validation.vue'
+import ruleList from './RuleList.vue'
 
 export default {
   name: 'form2-view',
   components: {
-    validation
+    validation,
+    ruleList
   },
   computed: {
     myStore () {
@@ -126,4 +136,6 @@ export default {
 pre {
   font-size: 11px;
 }
+
+
 </style>
