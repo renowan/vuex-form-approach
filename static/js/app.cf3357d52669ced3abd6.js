@@ -563,7 +563,7 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
     staticClass: "row"
   }, [_c('div', {
     staticClass: "col-xs-12 mb24"
-  }, [_vm._v("\n      複数のバリデーションありのフォームと戦う。入力中の状態、バリデーション設定はすべてStoreに置く方針で実装する。\n    ")])])
+  }, [_vm._v("\n      複数ののフォームと戦う。storeの中にネストされたデータを最小限のmutationsで更新する実装。\n    ")])])
 }]
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
@@ -2034,4 +2034,4 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.79687f2fce9bde644cf0.js.map
+//# sourceMappingURL=app.cf3357d52669ced3abd6.js.map
